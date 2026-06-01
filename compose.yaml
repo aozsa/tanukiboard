@@ -1,0 +1,21 @@
+services:
+  app:
+    # build: .
+    image: node:22.22.0
+    command: bash -c "trap 'exit' SIGINT SIGTERM; sleep infinity & wait"
+    working_dir: /app
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  db:
+    image: postgres:18.3-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tanukita
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./dbdata:/var/lib/postgresql
