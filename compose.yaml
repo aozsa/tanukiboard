@@ -1,8 +1,8 @@
 services:
   app:
-    # build: .
-    image: node:22.22.0
-    command: bash -c "trap 'exit' SIGINT SIGTERM; sleep infinity & wait"
+    build: .
+    # image: node:22.22.0
+    # command: bash -c "trap 'exit' SIGINT SIGTERM; sleep infinity & wait"
     working_dir: /app
     ports:
       - 8000:8000
